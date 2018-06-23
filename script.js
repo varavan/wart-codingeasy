@@ -1,5 +1,6 @@
 const langEs = {
     title: "¿Quieres aprender a programar en 1 hora?",
+    mobileWarn: "Abre este enlace en un pc para continuar",
     button: "Empezemos!",
     click_on_button_desktop: "Oops! Server is too full. Ha habido un error intentalo mas tarde",
     arenga_1:"Vamos , que casi has pasado la primera prueba",
@@ -9,7 +10,8 @@ const langEs = {
 }
 
 const langEn = {
-    title: "Do you want to learn programming in just 1 hour?",
+    title: "Feeling like coding in just 1 hour?",
+    mobileWarn: "This app works on PC",
     button: "Ok, lets go !",
     click_on_button_desktop: "Oops! Server is too full.",
     arenga_1:"Com on, almost there",
@@ -19,6 +21,15 @@ const langEn = {
 }
 
 var tries = 0;
+
+function is_touch_device() {
+    try {
+        document.createEvent("TouchEvent");
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -143,3 +154,12 @@ function move() {
 
 document.getElementById('title').innerHTML = resolveLang().title
 document.getElementById('action').innerHTML = resolveLang().button
+document.getElementById('mobile-warn').innerHTML = resolveLang().mobileWarn
+
+console.log(is_touch_device())
+if(is_touch_device()) {
+    document.getElementById('action').classList.add('hide')
+}else{
+    document.getElementById('mobile-warn').classList.add('hide')
+
+}
